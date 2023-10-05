@@ -40,10 +40,10 @@ from collections import namedtuple
 ```
 
 ## 0. Definición de una namedtuple
-Para que el código sea más legible, vamos a definir un nuevo tipo llamado `Audiencias`. Este nuevo tipo se define en base a una tupla de dos campos. Al primer cambo de la tupla se le dará el nombre `edicion` y al segundo el nombre `share`. La definición del nuevo tipo se realiza mediante la siguiente sentencia.
+Para que el código sea más legible, vamos a definir un nuevo tipo llamado `Audiencias`. Este nuevo tipo se define en base a una tupla de dos campos. Al primer campo de la tupla se le dará el nombre `edicion` y al segundo el nombre `share`. La definición del nuevo tipo se realiza mediante la siguiente sentencia.
 
 ```python
-Audiencia = namedtuple ("Audiencia", "edicion share")
+Audiencia = namedtuple ("Audiencia", "edicion, share")
 ```
 
 ## 1. Carga de datos
@@ -93,10 +93,8 @@ def lee_Audiencia(fichero):
     with open(fichero, encoding='utf-8') as f:
         # Se crea un objeto lector (un iterator) que separará los valores por comas 
         lector = csv.reader(f)
-        for edicion, share in lector:
-            edicion = int(edicion)
-            share = float(share)
-            audiencias.append(Audiencia(edicion, share))
+        for hola in lector:
+            audiencias.append(Audiencia(int(hola[0]), float(hola[1])))
     return audiencias
 ```
 
